@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AIOBException {
-    public int testArray() {
+    public int testArrayIndexOutOfBounds() {
         List numbers = new ArrayList<>();
         numbers.add(3);
         numbers.add(5);
