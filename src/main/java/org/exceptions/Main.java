@@ -1,8 +1,13 @@
 package org.exceptions;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class Main {
+    private static final Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
-        //System.out.println("Hello world!");
+        BasicConfigurator.configure();
+
         NPException npexception = new NPException();
         AIOBException aiobException = new AIOBException();
 
@@ -13,7 +18,7 @@ public class Main {
         }
         catch (NullPointerException | IndexOutOfBoundsException e)
         {
-            System.out.println("Exception(s) found: \n" + e);
+            logger.info("Exception 1. found: \n" + e);
         }
 
         //testing ArrayIndexOutOfBoundsException
@@ -23,7 +28,7 @@ public class Main {
         }
         catch (IndexOutOfBoundsException e)
         {
-            System.out.println("Exception 2. found: \n" + e);
+            logger.info("Exception 2. found: \n" + e);
         }
     }
 }
