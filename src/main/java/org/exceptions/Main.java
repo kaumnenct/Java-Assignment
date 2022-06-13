@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws NPException, IOException {
+    public static void main(String[] args) throws IOException, INException {
         Logger logger = new Logger();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -30,16 +30,20 @@ public class Main {
             number2 = null;
         }
 
-        if (number != null && number2 != null)
-        {
+        if (number != null && number2 != null) {
             System.out.println("You can concatenate these two numbers! The result is : " + number + number2);
         }
-        else
-        {
+        else {
             String errMessage = "You have to provide numbers if you want to use them!";
 
             logger.logError(errMessage);
             throw new NPException(errMessage);
         }
+
+        //checked exception
+        System.out.println("Please input name: ");
+        String name = reader.readLine();
+        CustomCheckedException cce = new CustomCheckedException(name);
+        cce.printName();
     }
 }
