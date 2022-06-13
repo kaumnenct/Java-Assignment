@@ -1,34 +1,45 @@
 package org.exceptions;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    private static final Logger logger = LogManager.getLogger(Main.class);
-    public static void main(String[] args) {
-        BasicConfigurator.configure();
+    public static void main(String[] args) throws NPException, IOException {
+        Logger logger = new Logger();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        NPException npexception = new NPException();
-        AIOBException aiobException = new AIOBException();
+        // unchecked error
+        Integer number = 0, number2 = 0;
 
-        //testing NullPointerException
+        System.out.println("Please input first number: ");
         try {
-            npexception.testNullPointer();
-            aiobException.testArrayIndexOutOfBounds();
+            number = Integer.valueOf(reader.readLine());
         }
-        catch (NullPointerException | IndexOutOfBoundsException e)
-        {
-            logger.info("Exception 1. found: \n" + e);
+        catch (NumberFormatException e) {
+            number = null;
         }
 
-        //testing ArrayIndexOutOfBoundsException
-        try
-        {
-            aiobException.testArrayIndexOutOfBounds();
+        System.out.println("Please input second number: ");
+
+        try {
+            number2 = Integer.valueOf(reader.readLine());
         }
-        catch (IndexOutOfBoundsException e)
+        catch (NumberFormatException e) {
+            number2 = null;
+        }
+
+        if (number != null && number2 != null)
         {
-            logger.info("Exception 2. found: \n" + e);
+            System.out.println("You can concatenate these two numbers! The result is : " + number + number2);
+        }
+        else
+        {
+            String errMessage = "You have to provide numbers if you want to use them!";
+
+            logger.logError(errMessage);
+            throw new NPException(errMessage);
         }
     }
 }
