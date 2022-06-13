@@ -7,10 +7,11 @@ public class Main {
         //testing NullPointerException
         try {
             npexception.testNullPointer();
+            aiobException.testArrayIndexOutOfBounds();
         }
-        catch (NullPointerException e)
+        catch (NullPointerException | IndexOutOfBoundsException e)
         {
-            System.out.println("Exception 1. found: \n" + e);
+            System.out.println("Exception(s) found: \n" + e);
         }
 
         //testing ArrayIndexOutOfBoundsException
