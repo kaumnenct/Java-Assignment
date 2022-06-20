@@ -3,10 +3,11 @@ package org.threads;
 public class Main {
 
     public static void main(String[] args) {
-        ThreadOne threadOne = new ThreadOne();
-        ThreadTwo threadTwo = new ThreadTwo();
 
-        threadOne.start();
-        threadTwo.start();
+        ChatLogic chat = new ChatLogic();
+
+        new ThreadOne(chat).start();
+        new ThreadTwo(chat).start();
+
     }
 }
